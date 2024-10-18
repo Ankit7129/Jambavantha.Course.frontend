@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000'; // Use your base URL
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -10,7 +11,7 @@ const CourseList = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/college/courses', {
+        const response = await axios.get(`${BASE_URL}/api/college/courses`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
