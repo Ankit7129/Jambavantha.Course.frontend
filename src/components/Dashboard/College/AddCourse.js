@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import './AddCourse.css'; // Uncomment this line to import CSS for styling
+//import './AddCourse.css'; // Import CSS for styling
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000'; // Use your base URL
 
@@ -13,14 +13,14 @@ const AddCourse = () => {
     price: '',
     duration: '',
     remarks: '',
-    college: localStorage.getItem('collegeId') || '', // Use college ID from local storage
+    college: localStorage.getItem('collegeId') || '' // Use college ID from local storage
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCourseData((prevData) => ({
       ...prevData,
-      [name]: name === 'remarks' ? value.split(',').map(remark => remark.trim()) : value, // Convert remarks to an array
+      [name]: name === 'remarks' ? value.split(',') : value // Convert remarks to an array
     }));
   };
 
@@ -44,13 +44,12 @@ const AddCourse = () => {
     <div className="add-course-container">
       <h2>Add New Course</h2>
 
-      {/* Description for the page */}
-      <p className="page-description">
-        This is the page where you can add new courses to the system. 
-        Please fill in the details below to create a new course, including the course name, description, price, 
-        duration, and any additional remarks you may have. 
-      </p>
-      
+{/* Description for the page */}
+<p className="page-description">
+  This is the page where you can add new courses to the system. 
+  Please fill in the details below to create a new course, including the course name, description, price, 
+  duration, and any additional remarks you may have. 
+</p>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Course Name:</label>
@@ -62,7 +61,6 @@ const AddCourse = () => {
             required
           />
         </div>
-        
         <div className="form-group">
           <label>Description:</label>
           <textarea
@@ -72,7 +70,6 @@ const AddCourse = () => {
             required
           />
         </div>
-        
         <div className="form-group">
           <label>Price:</label>
           <input
@@ -83,7 +80,6 @@ const AddCourse = () => {
             required
           />
         </div>
-        
         <div className="form-group">
           <label>Duration:</label>
           <input
@@ -94,17 +90,15 @@ const AddCourse = () => {
             required
           />
         </div>
-        
         <div className="form-group">
           <label>Remarks (comma separated):</label>
           <input
             type="text"
             name="remarks"
-            value={courseData.remarks.join(', ')} // Display remarks as a comma-separated string
+            value={courseData.remarks}
             onChange={handleChange}
           />
         </div>
-        
         <button type="submit">Add Course</button>
       </form>
     </div>

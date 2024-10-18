@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 //import './ManageCourses.css'; // Optional: import CSS for styling
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000'; // Use your base URL
 
 const ManageCourses = () => {
   const [courses, setCourses] = useState([]);
@@ -12,7 +13,7 @@ const ManageCourses = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/college/courses');
+      const response = await axios.get(`${BASE_URL}/api/college/courses`);
       setCourses(response.data);
     } catch (error) {
       setError('Error fetching courses, please try again.');
@@ -21,7 +22,7 @@ const ManageCourses = () => {
 
   const handleDelete = async (courseId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/college/courses/${courseId}`);
+      await axios.delete(`${BASE_URL}/api/college/courses/${courseId}`);
       setCourses(courses.filter((course) => course._id !== courseId)); // Update the course list
     } catch (error) {
       setError('Error deleting course, please try again.');
