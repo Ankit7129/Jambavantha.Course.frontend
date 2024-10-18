@@ -27,24 +27,32 @@ const StudentDashboard = () => {
     navigate('/');
   };
 
+  // Retrieve student information from localStorage
+  const studentId = localStorage.getItem('studentId'); // Added student ID
+  const studentName = localStorage.getItem('studentName');
+  const studentEmail = localStorage.getItem('studentEmail');
+  const studentPhone = localStorage.getItem('studentPhoneNumber');
+  const educationalBackground = localStorage.getItem('educationalBackground');
+
   return (
     <div className="dashboard-container">
       <h1>Welcome, Student!</h1>
       
       <div className="user-info">
         <h2>Your Information</h2>
-        <p>Name: [Student Name]</p>
-        <p>Email: [Student Email]</p>
-        <p>Phone Number: [Student Phone]</p>
-        <p>Educational Background: [Background]</p>
+        <p>Student ID: {studentId}</p> {/* Display Student ID */}
+        <p>Name: {studentName}</p>
+        <p>Email: {studentEmail}</p>
+        <p>Phone Number: {studentPhone}</p>
+        <p>Educational Background: {educationalBackground}</p>
       </div>
 
       <div className="button-group">
         <button onClick={() => navigate('/courses')}>View Courses</button>
         <button onClick={() => navigate('/update-profile')}>Update Profile</button>
         <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
+          Logout
+        </button>
       </div>
 
       {/* Bubbles for floating animation */}
