@@ -48,6 +48,13 @@ const ManageCourses = () => {
             <p>{course.description}</p>
             <p>Price: ${course.price}</p>
             <p>Duration: {course.duration}</p>
+            {/* Display remarks safely */}
+            <p>
+              <strong>Remarks:</strong> 
+              {Array.isArray(course.remarks) && course.remarks.length > 0
+                ? course.remarks.join(', ')
+                : 'No remarks available'}
+            </p>
             <button onClick={() => handleDelete(course._id)}>Delete</button>
           </li>
         ))}
